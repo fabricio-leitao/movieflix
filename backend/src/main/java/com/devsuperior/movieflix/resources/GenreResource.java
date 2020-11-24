@@ -2,7 +2,7 @@ package com.devsuperior.movieflix.resources;
 
 import java.util.List;
 
-import com.devsuperior.movieflix.entities.Genre;
+import com.devsuperior.movieflix.dto.GenreDTO;
 import com.devsuperior.movieflix.services.GenreService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +19,8 @@ public class GenreResource {
   private GenreService genreService;
 
   @GetMapping
-  public ResponseEntity<List<Genre>> findAll() {
-    List<Genre> list = genreService.findAll();
+  public ResponseEntity<List<GenreDTO>> findAll() {
+    List<GenreDTO> list = genreService.findAll();
     return ResponseEntity.ok().body(list);
   }
 }

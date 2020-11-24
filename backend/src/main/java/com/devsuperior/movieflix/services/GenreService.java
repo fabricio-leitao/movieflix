@@ -1,7 +1,9 @@
 package com.devsuperior.movieflix.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.devsuperior.movieflix.dto.GenreDTO;
 import com.devsuperior.movieflix.entities.Genre;
 import com.devsuperior.movieflix.repositories.GenreRepository;
 
@@ -16,7 +18,9 @@ public class GenreService {
   private GenreRepository genreRepository;
 
   @Transactional(readOnly = true)
-  public List<Genre> findAll() {
-    return genreRepository.findAll();
+  public List<GenreDTO> findAll() {
+    List<Genre> list = genreRepository.findAll();
+
+    return list.stream().map(x -> new GenreDTO(x)).collect(Collectors.toList());
   }
 }
