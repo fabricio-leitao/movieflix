@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import com.devsuperior.movieflix.dto.GenreDTO;
 import com.devsuperior.movieflix.entities.Genre;
 import com.devsuperior.movieflix.repositories.GenreRepository;
+import com.devsuperior.movieflix.services.exceptions.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class GenreService {
   @Transactional(readOnly = true)
   public GenreDTO findById(Long id) {
     Optional<Genre> obj = repository.findById(id);
-    Genre entity = obj.get();
+    Genre entity = obj.orElseThrow(() -> new EntityNotFoundException("Entity not found"));
 
     return new GenreDTO(entity);
   }
