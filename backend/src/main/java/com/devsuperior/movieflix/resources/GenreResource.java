@@ -1,7 +1,6 @@
 package com.devsuperior.movieflix.resources;
 
 import java.net.URI;
-import java.util.List;
 
 import com.devsuperior.movieflix.dto.GenreDTO;
 import com.devsuperior.movieflix.services.GenreService;
