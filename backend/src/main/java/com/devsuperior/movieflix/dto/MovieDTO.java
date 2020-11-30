@@ -1,12 +1,23 @@
 package com.devsuperior.movieflix.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
 import com.devsuperior.movieflix.entities.Movie;
+
+import org.springframework.format.annotation.NumberFormat;
 
 public class MovieDTO {
 
   private Long id;
+
+  @Size(min = 5, max = 120, message = "Deve ter entre 5 e 120 caracteres")
+  @NotBlank(message = "Campo obrigatório")
   private String title;
   private String subTitle;
+
+  @Positive(message = "Favor entrar com um ano positivo")
   private Integer year;
   private String imgUrl;
   private String synopsis;
