@@ -5,6 +5,7 @@ import java.util.Optional;
 import com.devsuperior.movieflix.dto.RoleDTO;
 import com.devsuperior.movieflix.dto.UserDTO;
 import com.devsuperior.movieflix.dto.UserInsertDTO;
+import com.devsuperior.movieflix.dto.UserUpdateDTO;
 import com.devsuperior.movieflix.entities.Role;
 import com.devsuperior.movieflix.entities.User;
 import com.devsuperior.movieflix.repositories.RoleRepository;
@@ -56,7 +57,7 @@ public class UserService {
   }
 
   @Transactional
-  public UserDTO update(Long id, UserDTO dto) {
+  public UserDTO update(Long id, UserUpdateDTO dto) {
     try {
       User entity = repository.getOne(id);
       copyDtotoEntity(dto, entity);

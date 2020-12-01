@@ -6,8 +6,6 @@ import javax.validation.constraints.Size;
 
 import com.devsuperior.movieflix.entities.Movie;
 
-import org.springframework.format.annotation.NumberFormat;
-
 public class MovieDTO {
 
   private Long id;
