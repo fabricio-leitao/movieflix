@@ -1,12 +1,15 @@
 package com.devsuperior.movieflix.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import com.devsuperior.movieflix.entities.Movie;
 
-public class MovieDTO {
+public class MovieDetailDTO {
 
   private Long id;
 
@@ -20,13 +23,14 @@ public class MovieDTO {
   private String imgUrl;
   private String synopsis;
   private Long genreId;
+  
+  List<ReviewDTO> reviews = new ArrayList<>();
 
-
-  public MovieDTO() {
+  public MovieDetailDTO() {
 
   }
 
-  public MovieDTO(Long id, String title, String subTitle, Integer year, String imgUrl, String synopsis, Long genreId) {
+  public MovieDetailDTO(Long id, String title, String subTitle, Integer year, String imgUrl, String synopsis, Long genreId) {
     this.id = id;
     this.title = title;
     this.subTitle = subTitle;
@@ -36,7 +40,7 @@ public class MovieDTO {
     this.genreId = genreId;
   }
 
-  public MovieDTO(Movie entity) {
+  public MovieDetailDTO(Movie entity) {
     id = entity.getId();
     title = entity.getTitle();
     subTitle = entity.getSubTitle();
@@ -45,6 +49,7 @@ public class MovieDTO {
     synopsis = entity.getSynopsis();
     genreId = entity.getGenre().getId();
     
+    entity.getReviews().forEach(rev -> this.reviews.add(new ReviewDTO(rev)));
   }
 
   public Long getId() {
@@ -103,6 +108,9 @@ public class MovieDTO {
     this.genreId = genreId;
   }
 
+public List<ReviewDTO> getReviews() {
+	return reviews;
+}
   
 
 }

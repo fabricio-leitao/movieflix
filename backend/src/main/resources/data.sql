@@ -23,7 +23,7 @@ INSERT INTO tb_movie (title, sub_title, year, img_url, synopsis, genre_id) VALUE
 INSERT INTO tb_movie (title, sub_title, year, img_url, synopsis, genre_id) VALUES ('Star Wars', 'Episódio III - A Vingança dos Sith', 2005, 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/m4ihKTuWHiNa5u09OgFtvpnedQ6.jpg', 'As Guerras Clônicas estão em pleno andamento e Anakin Skywalker mantém um elo de lealdade com Palpatine, ao mesmo tempo em que luta para que seu casamento com Padmé Amidala não seja afetado por esta situação. Seduzido por promessas de poder, Anakin se aproxima cada vez mais de Darth Sidious até se tornar o temível Darth Vader. Juntos eles tramam um plano para aniquilar de uma vez por todas com os cavaleiros jedi.', 4);
 INSERT INTO tb_movie (title, sub_title, year, img_url, synopsis, genre_id) VALUES ('Star Wars', 'Episódio IV - O Retorno de Jedi', 1983, 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/e57CeQLHE5WWzWy3oq03IVmAyfp.jpg', 'O imperador está supervisionando a construção de uma nova Estrela da Morte. Enquanto isso Luke Skywalker liberta Han Solo e a Princesa Leia das mãos de Jaba. Luke só se tornará um cavaleiro jedi quando destruir Darth Vader, que ainda pretende atraí-lo para o lado sombrio da Força.', 4);
 
-INSERT INTO tb_review (text, movie_id, user_id) VALUES ('Melhor filme da vida', 1, 1);
-INSERT INTO tb_review (text, movie_id, user_id) VALUES ('Amo Star Wars', 7, 1);
+INSERT INTO tb_review (text, movie_id, user_id) VALUES ('Melhor filme da vida', 1, 2);
+INSERT INTO tb_review (text, movie_id, user_id) VALUES ('Amo Star Wars', 7, 2);
 INSERT INTO tb_review (text, movie_id, user_id) VALUES ('Melhor que Senhor dos anéis', 4, 2);
 INSERT INTO tb_review (text, movie_id, user_id) VALUES ('Me decepcionei', 3, 2);
