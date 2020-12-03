@@ -1,5 +1,8 @@
 package com.devsuperior.movieflix.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
@@ -20,6 +23,8 @@ public class MovieDTO {
   private String imgUrl;
   private String synopsis;
   private Long genreId;
+  
+  List<ReviewDTO> reviews = new ArrayList<>();
 
   public MovieDTO() {
 
@@ -43,6 +48,8 @@ public class MovieDTO {
     imgUrl = entity.getImgUrl();
     synopsis = entity.getSynopsis();
     genreId = entity.getGenre().getId();
+    
+    entity.getReviews().forEach(rev -> this.reviews.add(new ReviewDTO(rev)));
   }
 
   public Long getId() {
@@ -100,5 +107,10 @@ public class MovieDTO {
   public void setGenreId(Long genreId) {
     this.genreId = genreId;
   }
+
+public List<ReviewDTO> getReviews() {
+	return reviews;
+}
+  
 
 }
