@@ -1,21 +1,47 @@
 package com.devsuperior.movieflix.dto;
 
+import java.io.Serializable;
+
+import javax.validation.constraints.NotBlank;
+
 import com.devsuperior.movieflix.entities.Review;
 
-public class ReviewDTO {
+public class ReviewDTO implements Serializable{
+	private static final long serialVersionUID = 1L;
 
+	private Long id;
+	
+	@NotBlank(message= "Campo de texto da avaliação não pode ser vazio!")
 	private String text;
+
+	private Long movieId;
+	
+	private UserDTO userDTO;
 	
 	public ReviewDTO() {
 		
 	}
 
-	public ReviewDTO(String text) {
+	public ReviewDTO(Long id, String text, Long movieId, UserDTO userDTO/*User user*/) {
+		this.id = id;
 		this.text = text;
+		this.movieId = movieId;
+		this.userDTO = userDTO;
 	}
 	
 	public ReviewDTO(Review entity) {
-		text = entity.getText();
+		this.id = entity.getId();
+		this.text = entity.getText();
+		this.movieId = entity.getMovie().getId();
+		this.userDTO = new UserDTO(entity.getUser());
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getText() {
@@ -25,6 +51,22 @@ public class ReviewDTO {
 	public void setText(String text) {
 		this.text = text;
 	}
+
+
+	public Long getMovieId() {
+		return movieId;
+	}
+
+	public void setMovieId(Long movieId) {
+		this.movieId = movieId;
+	}
 	
-	
+
+	public UserDTO getUserDTO() {
+		return userDTO;
+	}
+
+	public void setUserDTO(UserDTO userDTO) {
+		this.userDTO = userDTO;
+	}
 }
