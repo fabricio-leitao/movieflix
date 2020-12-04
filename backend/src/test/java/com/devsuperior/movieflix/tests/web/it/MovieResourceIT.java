@@ -211,12 +211,12 @@ public class MovieResourceIT {
 		return true;
 	}
 	
-	/*private boolean allMoviesGenresMatch(MovieDTO[] movies, long genreId) {
+	private boolean allMoviesGenresMatch(MovieDTO[] movies, long genreId) {
 		for (MovieDTO movie : movies) {
 			if (movie.getGenre().getId() != genreId) {
 				return false;
 			}
 		}
 		return true;
-	}*/
+	}
 }
