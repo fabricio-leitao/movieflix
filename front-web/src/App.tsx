@@ -1,15 +1,11 @@
 import React from 'react';
 import './App.scss';
 import './core/assets/custom.scss';
-import Navbar from './core/components/Navbar';
-import Login from './pages/Auth/Login';
+import Routes from './Routes';
 
 const App = () => {
   return (
-    <>
-    <Navbar/>
-    <Login/>
-    </>
+    <Routes/>
   );
 }
 
