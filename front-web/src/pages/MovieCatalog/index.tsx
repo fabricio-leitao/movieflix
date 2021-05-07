@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Select from 'react-select';
 import Pagination from '../../core/components/Pagination';
+import { MovieResponse } from '../../core/types/Movie';
 import { customStyles } from '../../core/utils/filterStyles';
-import MovieCard from './MovieCard';
+import MovieCard from './components/MovieCard';
+import MovieCardLoader from './components/Loaders/MovieCardLoader'
 import './styles.scss';
 
 
@@ -13,6 +15,9 @@ const options = [
   ]
 
 const MovieCatalog = () => {
+    const [moviesResponse, setMoviesResponse] = useState<MovieResponse>();
+    const [isLoading, setIsLoading] = useState(false);
+    const [activePage, setActivePage] = useState(0);
 
     return (
         <div className="movie-catalog-container">
@@ -35,16 +40,20 @@ const MovieCatalog = () => {
                     />
                 </div>
                 <div className="movie-cards-container">
-                    <MovieCard/>
-                    <MovieCard/>
-                    <MovieCard/>
-                    <MovieCard/>
-                    <MovieCard/>
-                    <MovieCard/>
-                    <MovieCard/>
+                {isLoading ? <MovieCardLoader/> : 
+                    (<MovieCard
+                        title ="O Retorno do Rei"
+                        release = {2013}
+                        description="O Olho do Inimigo está se movendo"
+                    />)
+                }
                 </div>
             </div>
-            <Pagination totalPages={10} activePage={0} onChange={() => console.log("teste")}/>
+            <Pagination 
+                totalPages={1} 
+                activePage={activePage} 
+                onChange={(page) => setActivePage(page)} 
+            />
         </div>
     );
 };
