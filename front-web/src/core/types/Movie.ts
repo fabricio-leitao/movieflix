@@ -18,6 +18,13 @@ export type Review = {
   id: number;
   text: string;
   movieId: number;
+  userDTO: User;
+}
+
+export type User = {
+  id: number;
+  name: string;
+  email: string;
 }
 
 export type Genre = {
