@@ -213,7 +213,7 @@ public class MovieResourceIT {
 	
 	private boolean allMoviesGenresMatch(MovieDTO[] movies, long genreId) {
 		for (MovieDTO movie : movies) {
-			if (movie.getGenre().getId() != genreId) {
+			if (movie.getGenreId()!= genreId) {
 				return false;
 			}
 		}

@@ -1,5 +1,6 @@
 package com.devsuperior.movieflix.services;
 
+import com.devsuperior.movieflix.dto.ReviewInsertDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class ReviewService {
 	private AuthService authService;
 	
 	@Transactional
-	public ReviewDTO insert(ReviewDTO dto) {
+	public ReviewDTO insert(ReviewInsertDTO dto) {
 		Review entity = new Review();
 		
 		copyDtoToEntity(dto, entity);
@@ -43,7 +44,7 @@ public class ReviewService {
 		return new ReviewDTO(entity);
 	}
 	
-	private void copyDtoToEntity(ReviewDTO dto, Review entity) {
+	private void copyDtoToEntity(ReviewInsertDTO dto, Review entity) {
 		entity.setText(dto.getText());
 		
 		Movie mov = dto.getMovieId() == 0 ? null : movieRepository.getOne(dto.getMovieId());

@@ -4,6 +4,7 @@ import java.net.URI;
 
 import javax.validation.Valid;
 
+import com.devsuperior.movieflix.dto.ReviewInsertDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,10 +26,10 @@ public class ReviewResource {
 	
 
 	@PostMapping 
-	public ResponseEntity<ReviewDTO> insert(@Valid @RequestBody ReviewDTO dto) {
+	public ResponseEntity<ReviewDTO> insert(@Valid @RequestBody ReviewInsertDTO insertDTO) {
 
 		try {
-			dto = service.insert(dto);
+			ReviewDTO dto = service.insert(insertDTO);
 
 			URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 

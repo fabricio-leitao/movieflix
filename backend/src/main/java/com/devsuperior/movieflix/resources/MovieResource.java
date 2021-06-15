@@ -1,19 +1,16 @@
 package com.devsuperior.movieflix.resources;
 
+import com.devsuperior.movieflix.dto.MovieDTO;
+import com.devsuperior.movieflix.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.devsuperior.movieflix.dto.MovieDTO;
-import com.devsuperior.movieflix.dto.MovieDetailDTO;
-import com.devsuperior.movieflix.services.MovieService;
+import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/movies")
@@ -38,13 +35,30 @@ public class MovieResource {
   }
   
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<MovieDetailDTO> findById(@PathVariable Long id) {
+	public ResponseEntity<MovieDTO> findById(@PathVariable Long id) {
 
-		
-		
-		MovieDetailDTO dto = service.findById(id);
+		MovieDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 
 	}
+
+    @PostMapping
+    public ResponseEntity<MovieDTO> insert(@RequestBody MovieDTO dto) {
+        dto = service.insert(dto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
+        return ResponseEntity.created(uri).body(dto);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<MovieDTO> update(@PathVariable Long id, @RequestBody MovieDTO dto) {
+        dto = service.update(id, dto);
+        return ResponseEntity.ok().body(dto);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<MovieDTO> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }

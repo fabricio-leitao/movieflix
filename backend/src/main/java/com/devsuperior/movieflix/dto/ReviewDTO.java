@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.validation.constraints.NotBlank;
 
 import com.devsuperior.movieflix.entities.Review;
+import org.codehaus.jackson.annotate.JsonProperty;
 
 public class ReviewDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -15,25 +16,26 @@ public class ReviewDTO implements Serializable{
 	private String text;
 
 	private Long movieId;
-	
-	private UserDTO user;
+
+	@JsonProperty("user")
+	private UserDTO userDTO;
 	
 	public ReviewDTO() {
 		
 	}
 
-	public ReviewDTO(Long id, String text, Long movieId, UserDTO user) {
+	public ReviewDTO(Long id, String text, Long movieId, UserDTO userDTO) {
 		this.id = id;
 		this.text = text;
 		this.movieId = movieId;
-		this.user = user;
+		this.userDTO = userDTO;
 	}
 	
 	public ReviewDTO(Review entity) {
 		id = entity.getId();
 		text = entity.getText();
 		movieId = entity.getMovie().getId();
-		user = new UserDTO(entity.getUser());
+		userDTO = new UserDTO(entity.getUser());
 	}
 
 	public Long getId() {
@@ -61,15 +63,11 @@ public class ReviewDTO implements Serializable{
 		this.movieId = movieId;
 	}
 
-
-	public UserDTO getUser() {
-		return user;
+	public UserDTO getUserDTO() {
+		return userDTO;
 	}
 
-	public void setUser(UserDTO user) {
-		this.user = user;
+	public void setUserDTO(UserDTO userDTO) {
+		this.userDTO = userDTO;
 	}
-	
-
-	
 }
